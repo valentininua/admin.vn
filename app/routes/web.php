@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\{ProfileController,ClientController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,5 +27,13 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/client', function () {
+    return view('client.create');
+});
+
+Route::post('/client', [ClientController::class, 'save'])->name('client.save');
+Route::get('/id{id}', [ClientController::class, 'main'])->name('client.main');
+
 
 require __DIR__.'/auth.php';
